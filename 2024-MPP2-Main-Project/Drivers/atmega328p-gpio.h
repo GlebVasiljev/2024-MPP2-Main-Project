@@ -7,7 +7,7 @@
 
 
 #ifndef ATMEGA328P-GPIO_H_
-#define ATMEGA328P-GPIO_H_
+#define ATMEGA328P_TIM_H_-GPIO_H_
 
 
 

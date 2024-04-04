@@ -7,7 +7,7 @@
 
 
 #ifndef ATMEGA328P-EPROM_H_
-#define ATMEGA328P-EPROM_H_
+#define ATMEGA328P_TIM_H_-EPROM_H_
 
 
 

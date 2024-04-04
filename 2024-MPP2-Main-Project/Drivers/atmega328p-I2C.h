@@ -7,7 +7,7 @@
 
 
 #ifndef ATMEGA328P-I2C_H_
-#define ATMEGA328P-I2C_H_
+#define ATMEGA328P_TIM_H_-I2C_H_
 
 
 
