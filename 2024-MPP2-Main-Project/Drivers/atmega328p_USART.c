@@ -78,8 +78,7 @@ uint8_t My_USART0_ReciveString(uint8_t *data_arr, uint8_t lenght)
 		if(My_USART0_CheckString(data_arr[lenght-1],i,lenght) == 1)
 		{
 			i = 0;
-			data_arr &= 0x00;
-			printf('String End\n');
+			//data_arr &= 0x00;
 		}
 		
 	}

@@ -34,39 +34,37 @@ typedef struct example
 
 example_t sensor_data;
 example_t *ptr_to_struct;
-
-void test_function(void);
 */
+void test_function(void);
+
 
 int main(void)
 {
-	DDRB |= (1 << DDB5);
+	DDRD = 0b11110000;
 	
 	My_Init_TIM1();
     My_TIM_Start(TIM1,TIM1_PRESCALER_FACTOR_1024);
 	
 	My_Init_USART();
-	//test_function();
+
 	
 	sei();
 	
     while (1) 
     {
-	
+		test_function();
     }
 }
 
-/*void test_function()
+void test_function()
 {
-	ptr = &data_arr;
-	ptr++;
-	ptr++;
-	*ptr = 0xFF;
-	ptr_to_var = &MCU;
+	for(int i = 0; i < 10;i++)
+	{
+		PORTD = i << 4;
+	}
 	
-	ptr_to_struct = &sensor_data;
 }
-*/
+
 
 ISR(TIMER1_COMPA_vect)
 {
