@@ -41,30 +41,61 @@ void test_function(void);
 int main(void)
 {
 	DDRD = 0b11110000;
+	DDRB = 0b00001111;
 	
-	My_Init_TIM1();
-    My_TIM_Start(TIM1,TIM1_PRESCALER_FACTOR_1024);
+	//My_Init_TIM1();
+	My_Init_TIM0();
+    My_TIM_Start(TIM0,TIM0_PRESCALER_FACTOR_64);
 	
 	My_Init_USART();
 
 	
 	sei();
 	
-    while (1) 
-    {
-		test_function();
-    }
-}
-
-void test_function()
-{
-	for(int i = 0; i < 10;i++)
+	while(1)
 	{
-		PORTD = i << 4;
+		
 	}
 	
 }
 
+void test_function()
+{
+	
+	
+}
+
+// Timer B
+ISR(TIMER0_COMPB_vect)
+{
+	/*static uint8_t cathode = 0;
+	static uint8_t digit = 0;
+	
+	if (cathode > 4) //To do
+	{
+		cathode = 0;
+	}
+	else
+	{
+		
+		cathode++;
+	}
+	
+	if (digit == 10)
+	{
+		digit = 0;
+	}
+	else
+	{
+		digit++;
+	}
+	
+	PORTD = digit << 4;
+	PORTB = cathode; */
+	static uint16_t x = 0;
+	x++;
+	
+}
 
 ISR(TIMER1_COMPA_vect)
 {
