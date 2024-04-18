@@ -31,7 +31,59 @@ uint8_t My_USART0_ReciveByte()
 	uint8_t data = UDR0;
 	return data;
 }
-uint8_t My_USART0_ReviveString(uint8_t data_arr, uint8_t lenght)
+
+int My_USART0_CheckString(uint8_t checkChar, uint8_t position, uint8_t buffer_len)
 {
+	// check < in the begining
+	if(position == 0 && checkChar == '<')
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
+	
+	// check > in the end
+	if(position == buffer_len-1 && checkChar == '>')
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+uint8_t My_USART0_ReciveString(uint8_t *data_arr, uint8_t lenght)
+{
+	static int i = 0;
+	data_arr[i] = My_USART0_ReciveByte();
+	
+	if(i == 0)
+	{
+		if(My_USART0_CheckString(data_arr[0],i,lenght) == 1)
+		{
+			i++;
+		}
+		
+	}
+	else 
+	{
+		i++;
+	}
+	
+	if(i == lenght-1)
+	{
+		if(My_USART0_CheckString(data_arr[lenght-1],i,lenght) == 1)
+		{
+			i = 0;
+			data_arr &= 0x00;
+			printf('String End\n');
+		}
+		
+	}
+
 	
 }
+
