@@ -6,6 +6,8 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
                               Core/main.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
                               Core/main.o (__do_clear_bss)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strcmp.o)
+                              Drivers/atmega328p_USART.o (strcmp)
 
 Allocating common symbols
 Common symbol       size              file
@@ -39,6 +41,8 @@ Discarded input sections
  .data.MCU      0x00000000        0x1 Core/main.o
  .text.test_function
                 0x00000000       0x10 Core/main.o
+ .text.counting_time_backward_miliseconds
+                0x00000000       0xe6 Core/main.o
  .text          0x00000000        0x0 Drivers/atmega328p-ACP.o
  .data          0x00000000        0x0 Drivers/atmega328p-ACP.o
  .bss           0x00000000        0x0 Drivers/atmega328p-ACP.o
@@ -72,8 +76,6 @@ Discarded input sections
  .text          0x00000000        0x0 Drivers/atmega328p_TIM.o
  .data          0x00000000        0x0 Drivers/atmega328p_TIM.o
  .bss           0x00000000        0x0 Drivers/atmega328p_TIM.o
- .text.My_Init_TIM1
-                0x00000000       0x4c Drivers/atmega328p_TIM.o
  .text.My_Init_TIM2
                 0x00000000       0x10 Drivers/atmega328p_TIM.o
  .text.My_TIM_Stop
@@ -131,6 +133,9 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strcmp.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strcmp.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strcmp.o)
 
 Memory Configuration
 
@@ -267,7 +272,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x40a
+.text           0x00000000      0x628
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -351,40 +356,52 @@ END GROUP
                 0x000000a2                __vector_20
                 0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x000000a6       0x30 Core/main.o
+ .text.main     0x000000a6       0x34 Core/main.o
                 0x000000a6                main
+ .text.counting_time_forward_miliseconds
+                0x000000da       0xac Core/main.o
+                0x000000da                counting_time_forward_miliseconds
  .text.__vector_15
-                0x000000d6       0x40 Core/main.o
-                0x000000d6                __vector_15
+                0x00000186       0x82 Core/main.o
+                0x00000186                __vector_15
  .text.__vector_11
-                0x00000116       0x26 Core/main.o
-                0x00000116                __vector_11
+                0x00000208       0x88 Core/main.o
+                0x00000208                __vector_11
  .text.__vector_18
-                0x0000013c       0x76 Core/main.o
-                0x0000013c                __vector_18
+                0x00000290       0x82 Core/main.o
+                0x00000290                __vector_18
  .text.My_Init_TIM0
-                0x000001b2       0x46 Drivers/atmega328p_TIM.o
-                0x000001b2                My_Init_TIM0
+                0x00000312       0x46 Drivers/atmega328p_TIM.o
+                0x00000312                My_Init_TIM0
+ .text.My_Init_TIM1
+                0x00000358       0x4c Drivers/atmega328p_TIM.o
+                0x00000358                My_Init_TIM1
  .text.My_TIM_Start
-                0x000001f8       0xaa Drivers/atmega328p_TIM.o
-                0x000001f8                My_TIM_Start
+                0x000003a4       0xaa Drivers/atmega328p_TIM.o
+                0x000003a4                My_TIM_Start
  .text.My_Init_USART
-                0x000002a2       0x32 Drivers/atmega328p_USART.o
-                0x000002a2                My_Init_USART
+                0x0000044e       0x32 Drivers/atmega328p_USART.o
+                0x0000044e                My_Init_USART
  .text.My_USART0_ReciveByte
-                0x000002d4       0x1e Drivers/atmega328p_USART.o
-                0x000002d4                My_USART0_ReciveByte
+                0x00000480       0x1e Drivers/atmega328p_USART.o
+                0x00000480                My_USART0_ReciveByte
  .text.My_USART0_CheckString
-                0x000002f2       0x34 Drivers/atmega328p_USART.o
-                0x000002f2                My_USART0_CheckString
+                0x0000049e       0x66 Drivers/atmega328p_USART.o
+                0x0000049e                My_USART0_CheckString
  .text.My_USART0_ReciveString
-                0x00000326       0xe0 Drivers/atmega328p_USART.o
-                0x00000326                My_USART0_ReciveString
-                0x00000406                . = ALIGN (0x2)
+                0x00000504       0xba Drivers/atmega328p_USART.o
+                0x00000504                My_USART0_ReciveString
+ .text.Process_command
+                0x000005be       0x54 Drivers/atmega328p_USART.o
+                0x000005be                Process_command
+ .text.avr-libc
+                0x00000612       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strcmp.o)
+                0x00000612                strcmp
+                0x00000624                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000406        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000406                _exit
-                0x00000406                exit
+ .fini9         0x00000624        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000624                _exit
+                0x00000624                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -403,43 +420,49 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000406        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000624        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000040a                _etext = .
+                0x00000628                _etext = .
 
-.data           0x00800100        0x0 load address 0x0000040a
+.data           0x00800100        0x8 load address 0x00000628
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  *(.gnu.linkonce.d*)
  *(.rodata)
+ .rodata        0x00800100        0x8 Drivers/atmega328p_USART.o
  *(.rodata*)
  *(.gnu.linkonce.r*)
-                0x00800100                . = ALIGN (0x2)
-                0x00800100                _edata = .
-                0x00800100                PROVIDE (__data_end, .)
+                0x00800108                . = ALIGN (0x2)
+                0x00800108                _edata = .
+                0x00800108                PROVIDE (__data_end, .)
 
-.bss            0x00800100       0x11
-                0x00800100                PROVIDE (__bss_start, .)
+.bss            0x00800108       0x16
+                0x00800108                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.x.1639    0x00800100        0x2 Core/main.o
- .bss.i.1628    0x00800102        0x2 Drivers/atmega328p_USART.o
+ .bss.Time      0x00800108        0x5 Core/main.o
+                0x00800108                Time
+ .bss.cathode.1787
+                0x0080010d        0x1 Core/main.o
+ .bss.cathode.1794
+                0x0080010e        0x1 Core/main.o
+ .bss.i.1763    0x0080010f        0x2 Drivers/atmega328p_USART.o
  *(COMMON)
- COMMON         0x00800104        0xd Core/main.o
-                0x00800104                ptr
-                0x00800106                data
-                0x00800107                ptr_to_var
-                0x00800109                data_buffer
-                0x00800111                PROVIDE (__bss_end, .)
-                0x0000040a                __data_load_start = LOADADDR (.data)
-                0x0000040a                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800111        0xd Core/main.o
+                0x00800111                ptr
+                0x00800113                data
+                0x00800114                ptr_to_var
+                0x00800116                data_buffer
+                0x0080011e                PROVIDE (__bss_end, .)
+                0x00000628                __data_load_start = LOADADDR (.data)
+                0x00000630                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800111        0x0
+.noinit         0x0080011e        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800111                _end = .
+                0x0080011e                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -506,60 +529,60 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xc0
+.debug_aranges  0x00000000       0xd8
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x40 Core/main.o
+                0x00000000       0x50 Core/main.o
  .debug_aranges
-                0x00000040       0x40 Drivers/atmega328p_TIM.o
+                0x00000050       0x40 Drivers/atmega328p_TIM.o
  .debug_aranges
-                0x00000080       0x40 Drivers/atmega328p_USART.o
+                0x00000090       0x48 Drivers/atmega328p_USART.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xa6b
+.debug_info     0x00000000      0xbc2
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_info    0x000005f4      0x1ca Core/main.o
- .debug_info    0x000007be      0x132 Drivers/atmega328p_TIM.o
- .debug_info    0x000008f0      0x17b Drivers/atmega328p_USART.o
+ .debug_info    0x000005f4      0x2c8 Core/main.o
+ .debug_info    0x000008bc      0x132 Drivers/atmega328p_TIM.o
+ .debug_info    0x000009ee      0x1d4 Drivers/atmega328p_USART.o
 
-.debug_abbrev   0x00000000      0x854
+.debug_abbrev   0x00000000      0x8a9
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_abbrev  0x000005a2      0x119 Core/main.o
- .debug_abbrev  0x000006bb       0xa8 Drivers/atmega328p_TIM.o
- .debug_abbrev  0x00000763       0xf1 Drivers/atmega328p_USART.o
+ .debug_abbrev  0x000005a2      0x15c Core/main.o
+ .debug_abbrev  0x000006fe       0xa8 Drivers/atmega328p_TIM.o
+ .debug_abbrev  0x000007a6      0x103 Drivers/atmega328p_USART.o
 
-.debug_line     0x00000000      0x5cf
+.debug_line     0x00000000      0x733
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_line    0x00000134      0x158 Core/main.o
- .debug_line    0x0000028c      0x1c0 Drivers/atmega328p_TIM.o
- .debug_line    0x0000044c      0x183 Drivers/atmega328p_USART.o
+ .debug_line    0x00000134      0x253 Core/main.o
+ .debug_line    0x00000387      0x1c0 Drivers/atmega328p_TIM.o
+ .debug_line    0x00000547      0x1ec Drivers/atmega328p_USART.o
 
-.debug_frame    0x00000000      0x288
+.debug_frame    0x00000000      0x35c
  *(.debug_frame)
- .debug_frame   0x00000000      0x114 Core/main.o
- .debug_frame   0x00000114       0xb4 Drivers/atmega328p_TIM.o
- .debug_frame   0x000001c8       0xc0 Drivers/atmega328p_USART.o
+ .debug_frame   0x00000000      0x1c8 Core/main.o
+ .debug_frame   0x000001c8       0xb4 Drivers/atmega328p_TIM.o
+ .debug_frame   0x0000027c       0xe0 Drivers/atmega328p_USART.o
 
-.debug_str      0x00000000      0x537
+.debug_str      0x00000000      0x572
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0x1cd Core/main.o
-                                0x210 (size before relaxing)
- .debug_str     0x000003d5       0x76 Drivers/atmega328p_TIM.o
+ .debug_str     0x00000208      0x238 Core/main.o
+                                0x297 (size before relaxing)
+ .debug_str     0x00000440       0x7f Drivers/atmega328p_TIM.o
                                 0x1fb (size before relaxing)
- .debug_str     0x0000044b       0xec Drivers/atmega328p_USART.o
-                                0x234 (size before relaxing)
+ .debug_str     0x000004bf       0xb3 Drivers/atmega328p_USART.o
+                                0x25c (size before relaxing)
 
-.debug_loc      0x00000000      0x4e1
+.debug_loc      0x00000000      0x6f0
  *(.debug_loc)
- .debug_loc     0x00000000      0x22b Core/main.o
- .debug_loc     0x0000022b      0x141 Drivers/atmega328p_TIM.o
- .debug_loc     0x0000036c      0x175 Drivers/atmega328p_USART.o
+ .debug_loc     0x00000000      0x3f3 Core/main.o
+ .debug_loc     0x000003f3      0x141 Drivers/atmega328p_TIM.o
+ .debug_loc     0x00000534      0x1bc Drivers/atmega328p_USART.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -579,11 +602,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x90
+.debug_ranges   0x00000000       0xa8
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x30 Core/main.o
- .debug_ranges  0x00000030       0x30 Drivers/atmega328p_TIM.o
- .debug_ranges  0x00000060       0x30 Drivers/atmega328p_USART.o
+ .debug_ranges  0x00000000       0x40 Core/main.o
+ .debug_ranges  0x00000040       0x30 Drivers/atmega328p_TIM.o
+ .debug_ranges  0x00000070       0x38 Drivers/atmega328p_USART.o
 
 .debug_macro
  *(.debug_macro)

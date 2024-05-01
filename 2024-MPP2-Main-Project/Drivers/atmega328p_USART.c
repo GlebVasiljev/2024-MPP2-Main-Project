@@ -4,7 +4,10 @@
  * Created: 04/04/2024 09:44:26
  *  Author: Student
  */ 
+#define Test_Command "<TEST0>"
+
 #include "atmega328p_USART.h"
+
 
 void My_Init_USART()
 {
@@ -39,13 +42,13 @@ int My_USART0_CheckString(uint8_t checkChar, uint8_t position, uint8_t buffer_le
 	{
 		return 1;
 	}
-	else 
+	else if (position == 0 && checkChar != '<')
 	{
 		return 0;
 	}
 	
 	// check > in the end
-	if(position == buffer_len-1 && checkChar == '>')
+	if(position == buffer_len-2 && checkChar == '>')
 	{
 		return 1;
 	}
@@ -59,7 +62,7 @@ uint8_t My_USART0_ReciveString(uint8_t *data_arr, uint8_t lenght)
 {
 	static int i = 0;
 	data_arr[i] = My_USART0_ReciveByte();
-	
+
 	if(i == 0)
 	{
 		if(My_USART0_CheckString(data_arr[0],i,lenght) == 1)
@@ -73,16 +76,32 @@ uint8_t My_USART0_ReciveString(uint8_t *data_arr, uint8_t lenght)
 		i++;
 	}
 	
+	
+
 	if(i == lenght-1)
 	{
-		if(My_USART0_CheckString(data_arr[lenght-1],i,lenght) == 1)
-		{
-			i = 0;
-			//data_arr &= 0x00;
-		}
-		
+		i = 0;		
+		return 1;
+	}
+	else
+	{
+		return 0;
 	}
 
-	
+}
+
+uint8_t Process_command(uint8_t *data_arr )
+{
+	char test_str[8];
+	strcpy(test_str, Test_Command); 
+	if( strcmp(data_arr, Test_Command) == 0 ) // compare USART input with pre-defined command
+	{
+		return 1; 
+	}
+	else
+	{
+
+		return 0;
+	}
 }
 
