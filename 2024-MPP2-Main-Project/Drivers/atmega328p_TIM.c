@@ -47,7 +47,16 @@ void My_Init_TIM1()
 */
 void My_Init_TIM2()
 {
+	// Galvenais skait?šanas re?istrs
+	TCNT2 = 0;
 	
+	// TIM1 compare register A
+	OCR2A = 250;
+	
+	TCCR2A  |= (1 << WGM21); // CTC Mode
+	
+	// Specifisk? p?rtraukuma at?aušana
+	TIMSK2	|= (1 << OCIE2A);
 }
 
 

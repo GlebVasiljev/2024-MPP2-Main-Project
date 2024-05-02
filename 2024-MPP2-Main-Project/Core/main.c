@@ -19,7 +19,7 @@ uint8_t MCU = 0xAF;
 
 uint8_t data_buffer[USART_Buffer_lenght];
 
-
+static uint32_t x = 0;
 
 /*
 typedef struct example
@@ -36,13 +36,6 @@ example_t sensor_data;
 example_t *ptr_to_struct;
 */
 
-typedef struct{
-	int16_t ms;
-	int8_t seconds;
-	int8_t minutes;
-	int8_t hours;
-
-}time_t;
 
 time_t Time = { 0 }; //Set all var value -> 0
 
@@ -58,9 +51,10 @@ int main(void)
 	DDRD = 0b11110000;
 	DDRB = 0b00001111;
 	
-	My_Init_TIM1();
-	My_Init_TIM0();
-    My_TIM_Start(TIM1,TIM1_PRESCALER_FACTOR_1024);
+	//My_Init_TIM0();
+	//My_Init_TIM1();
+	My_Init_TIM2();
+    My_TIM_Start(TIM2,TIM2_PRESCALER_FACTOR_64);
 	
 	My_Init_USART();
 
@@ -81,102 +75,26 @@ void test_function()
 }
 
 // TO DO Ierakstit atseviska faila
-void counting_time_backward_miliseconds(time_t *ptr_to_Time)
-{
-	ptr_to_Time->ms--;
 
-	if (ptr_to_Time->ms < 0)
-	{
-		ptr_to_Time->ms = 1000;
-		ptr_to_Time->seconds--;
-	}
 
-	if (ptr_to_Time->seconds < 0)
-	{
-		ptr_to_Time->seconds = 59;
-		ptr_to_Time->minutes--;
-	}
-
-	if (ptr_to_Time->minutes < 0)
-	{
-		ptr_to_Time->minutes = 59;
-		ptr_to_Time->hours--;
-	}
-
-	if (ptr_to_Time->hours < 0)
-	{
-		ptr_to_Time->ms = 0;
-		ptr_to_Time->seconds = 0;
-		ptr_to_Time->minutes = 0;
-		ptr_to_Time->hours = 0;
-	}
-}
-
-// TO DO Ierakstit atseviska faila
-void counting_time_forward_miliseconds(time_t *ptr_to_Time)
-{
-	ptr_to_Time->ms++;
-
-	if (ptr_to_Time->ms >= 1000)
-	{
-		ptr_to_Time->seconds++;
-	}
-
-	if (ptr_to_Time->seconds >= 60)
-	{
-		ptr_to_Time->minutes++;
-	}
-
-	if (ptr_to_Time->minutes >= 60)
-	{
-		ptr_to_Time->hours++;
-	}
-
-	if (ptr_to_Time->hours >= 24)
-	{
-		ptr_to_Time->hours = 0;
-	}
-}
 
 // Timer B
 
 ISR(TIMER0_COMPB_vect)
 {	
-	counting_time_forward_miliseconds(&Time); 
-	
-	static uint8_t cathode = 0;
-	uint8_t digit = Time.seconds;
-	
-	
-	PORTD = digit << 4;
-	PORTB = cathode; 
 	
 }
 
 ISR(TIMER1_COMPA_vect)
 {
 	
-	//counting_time_forward_miliseconds(&Time);
-	Time.minutes = 14;
+}
+
+ISR(TIMER2_COMPA_vect)
+{
 	counting_time_forward_miliseconds(&Time);
-	static uint8_t cathode = 0;
-	uint8_t digit = Time.seconds;
-
-
-	PORTD = digit << 4;
-	PORTB = cathode;
-	/*
-	static uint8_t data = 0x41;
-	data++;
-	if(data == 0x5B) {
-		data = 0x41;
-	}
-	uint8_t data_to_send = data;
-
 	
-	My_USART0_TransmitByte(data_to_send);
-	PORTB ^= (1 << PORTB5);
-	*/
+	//counting_time_backward_miliseconds(&Time);
 }
 
 ISR(USART_RX_vect)

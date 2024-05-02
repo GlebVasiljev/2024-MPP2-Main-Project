@@ -1,17 +1,10 @@
-/*
- * mian.h
- *
- * Created: 04/04/2024 09:51:32
- *  Author: Student
- */ 
 
-
-#ifndef MIAN_H_
-#define MIAN_H_
+#ifndef MAIN_H_
+#define MAIN_H_
 
 #include "atmega328p_config.h"
 #include "avr/io.h"
-
+#include "../Application/counting_time.h"
 
 
 #endif /* MIAN_H_ */

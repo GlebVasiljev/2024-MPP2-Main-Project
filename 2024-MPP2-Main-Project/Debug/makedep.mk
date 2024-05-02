@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+Application\counting_time.c
+
 Core\atmega328p-CPU.c
 
 Core\atmega328p-Watchdog.c
