@@ -7,7 +7,6 @@
 
 #include "main.h"
 #include "avr/interrupt.h"
-
 #define USART_Buffer_lenght 8
 
 uint8_t data;
@@ -21,23 +20,10 @@ uint8_t data_buffer[USART_Buffer_lenght];
 
 static uint32_t x = 0;
 
-/*
-typedef struct example
-{
-	uint8_t id;
-	
-	uint16_t x;
-	uint16_t y;
-	uint16_t z;
-}example_t;
 
 
-example_t sensor_data;
-example_t *ptr_to_struct;
-*/
 
-
-time_t Time = { 0 }; //Set all var value -> 0
+//time_t Time = { 0 }; Set all var value -> 0
 
 //time_t *ptr_to_Time;
 
@@ -52,12 +38,16 @@ int main(void)
 	DDRB = 0b00001111;
 	
 	//My_Init_TIM0();
-	//My_Init_TIM1();
+	My_Init_TIM1();
 	My_Init_TIM2();
     My_TIM_Start(TIM2,TIM2_PRESCALER_FACTOR_64);
+	My_TIM_Start(TIM1,TIM1_PRESCALER_FACTOR_1024);
 	
 	My_Init_USART();
 
+	//set_default_time(&Time);
+	My_User_Clock_Set(My_User_GetTime(),1,10,10,0);
+	
 	
 	sei();
 	
@@ -68,13 +58,6 @@ int main(void)
 	
 }
 
-void test_function()
-{
-	
-	
-}
-
-// TO DO Ierakstit atseviska faila
 
 
 
@@ -87,14 +70,22 @@ ISR(TIMER0_COMPB_vect)
 
 ISR(TIMER1_COMPA_vect)
 {
+	static uint8_t counter = 0;
+	PORTD = counter << 4;
+	counter++;
+	if( counter == 10)
+	{
+		counter = 0;
+	}
+	
 	
 }
 
 ISR(TIMER2_COMPA_vect)
 {
-	counting_time_forward_miliseconds(&Time);
+	counting_time_forward_miliseconds(My_User_GetTime());
 	
-	//counting_time_backward_miliseconds(&Time);
+	//counting_time_backward_miliseconds(My_User_GetTime());
 }
 
 ISR(USART_RX_vect)

@@ -1,7 +1,4 @@
-#include "counting_time.h"
-
-
-
+#include "time.h"
 
 void counting_time_forward_miliseconds(time_t *time)
 {
@@ -26,7 +23,7 @@ void counting_time_forward_miliseconds(time_t *time)
 		time->hours++;
 	}
 
-	if (time->hours > 23)
+	if (time->hours >= 24)
 	{
 		time->hours = 0;
 	}
@@ -38,7 +35,7 @@ void counting_time_backward_miliseconds(time_t *time)
 
 	if (time->ms < 0)
 	{
-		time->ms = 1000;
+		time->ms = 999;
 		time->seconds--;
 	}
 
@@ -61,4 +58,20 @@ void counting_time_backward_miliseconds(time_t *time)
 		time->minutes = 0;
 		time->hours = 0;
 	}
+}
+
+void set_time(time_t *time, uint8_t h, uint8_t m, uint8_t s, uint16_t ms)
+{
+	time->hours = h;
+	time->minutes = m;
+	time->seconds = s;
+	time->ms = ms;
+}
+
+void set_default_time(time_t *time)
+{
+	time->ms = 0;
+	time->seconds = 0;
+	time->minutes = 0;
+	time->hours = 0;
 }

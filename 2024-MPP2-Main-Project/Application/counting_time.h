@@ -1,5 +1,13 @@
-#ifdef counting_time_H_
-#define counting_time_H_
+/*
+ * counting_time.h
+ *
+ * Created: 16/05/2024 10:59:20
+ *  Author: Student
+ */ 
+
+
+#ifndef COUNTING_TIME_H_
+#define COUNTING_TIME_H_
 #include "avr/io.h"
 
 typedef struct{
@@ -10,7 +18,12 @@ typedef struct{
 
 }time_t;
 
-void counting_time_forward_miliseconds(time_t *ptr_to_Time);
-void counting_time_backward_miliseconds(time_t *ptr_to_Time);
+time_t Time;
 
-#endif
+void counting_time_forward_miliseconds(time_t *Time);
+void counting_time_backward_miliseconds(time_t *Time);
+
+
+
+
+#endif /* COUNTING_TIME_H_ */

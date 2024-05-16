@@ -128,6 +128,8 @@
       <Value>../Modules</Value>
       <Value>../Core</Value>
       <Value>../Application</Value>
+      <Value>../give_me_name</Value>
+      <Value>../Modules/segment_display</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
@@ -149,12 +151,6 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Application\counting_time.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Application\counting_time.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Core\atmega328p_config.h">
       <SubType>compile</SubType>
     </Compile>
@@ -212,14 +208,46 @@
     <Compile Include="Drivers\atmega328p_USART.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="give_me_name\time.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="give_me_name\time.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="give_me_name\user_clock.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="give_me_name\user_clock.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="give_me_name\user_hronometer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="give_me_name\user_hronometer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="give_me_name\user_timer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="give_me_name\user_timer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Modules\segment_display\driver_logic.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Modules\segment_display\driver_logic.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Drivers" />
     <Folder Include="Modules" />
     <Folder Include="Modules\BME280" />
+    <Folder Include="Modules\segment_display" />
     <Folder Include="Modules\OLED" />
     <Folder Include="Core" />
     <Folder Include="Application" />
+    <Folder Include="give_me_name" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
