@@ -36,17 +36,19 @@ int main(void)
 
 	DDRD = 0b11110000;
 	DDRB = 0b00001111;
+	DDRC = 0b00000011;
 	
-	//My_Init_TIM0();
+	My_Init_TIM0();
 	My_Init_TIM1();
 	My_Init_TIM2();
+	My_TIM_Start(TIM0,TIM0_PRESCALER_FACTOR_1024);
     My_TIM_Start(TIM2,TIM2_PRESCALER_FACTOR_64);
 	My_TIM_Start(TIM1,TIM1_PRESCALER_FACTOR_1024);
 	
 	My_Init_USART();
 
 	//set_default_time(&Time);
-	My_User_Clock_Set(My_User_GetTime(),1,10,10,0);
+	My_User_Clock_Set(My_User_GetTime(),12,34,0,0);
 	
 	
 	sei();
@@ -63,13 +65,15 @@ int main(void)
 
 // Timer B
 
-ISR(TIMER0_COMPB_vect)
+ISR(TIMER0_COMPA_vect)
 {	
+	MY_ShowTime(My_User_GetTime());
 	
 }
 
 ISR(TIMER1_COMPA_vect)
 {
+	/*
 	static uint8_t counter = 0;
 	PORTD = counter << 4;
 	counter++;
@@ -78,12 +82,15 @@ ISR(TIMER1_COMPA_vect)
 		counter = 0;
 	}
 	
+	*/
+	
 	
 }
 
 ISR(TIMER2_COMPA_vect)
 {
-	counting_time_forward_miliseconds(My_User_GetTime());
+	My_User_Clock();
+	//counting_time_forward_miliseconds(My_User_GetTime());
 	
 	//counting_time_backward_miliseconds(My_User_GetTime());
 }

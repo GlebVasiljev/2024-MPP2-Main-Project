@@ -17,7 +17,7 @@ void My_Init_TIM0()
 	OCR0B = 250;
 	TCCR0A  |= (1 << WGM01);
 	//TCCR0B = (1 << CS01) | (1 << CS00); // clk 1024 (from prescaler)
-	TIMSK0	|= (1 << OCIE0B);
+	TIMSK0	|= (1 << OCIE0A);
 
 }
 
@@ -50,7 +50,7 @@ void My_Init_TIM2()
 	// Galvenais skait?šanas re?istrs
 	TCNT2 = 0;
 	
-	// TIM1 compare register A
+	// TIM2 compare register A
 	OCR2A = 250;
 	
 	TCCR2A  |= (1 << WGM21); // CTC Mode

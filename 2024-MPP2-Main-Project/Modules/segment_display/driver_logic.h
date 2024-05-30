@@ -3,7 +3,7 @@
 #include "avr/io.h"
 #include "counting_time.h"
 #define BCD_DIGIT_COUNT 10
-
+#define BCD_INTEGREITED_CIRCUIT_USED
 
 void MY_ShowTime(time_t *time);
 void MY_Init_Time(time_t *time);
@@ -12,7 +12,7 @@ void MY_ShiftRegister_ClockPulse();
 void MY_ShiftRegister_Clear();
 
 #ifdef BCD_INTEGREITED_CIRCUIT_USED
-	#define DIGIT0		0x00
+	#define DIGIT0		0x00 
 	#define DIGIT1		0x01
 	#define DIGIT2		0x02
 	#define DIGIT3		0x03
